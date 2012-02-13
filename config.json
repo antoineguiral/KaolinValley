@@ -1,9 +1,9 @@
 {
-  "host": "example.com",
+  "host": "kaolinvalley.local",
   "port": 8080,
-  "admin": {"username": "admin", "password": "loremipsumdolorsitamet"},
-  "author": "Lorem Ipsum",
-  "disqus": "loremipsum",
+  "admin": {"username": "antoine", "password": "A-G MAF2"},
+  "author": "Antoine Guiral",
+  "disqus": "kaolinvalley",
   "paths": {
     "articles": "markdown"}
 }
