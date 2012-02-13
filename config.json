@@ -1,6 +1,6 @@
 {
   "host": "kaolinvalley.com",
-  "port": 80,
+  "port": 8080,
   "admin": {"username": "antoine", "password": "A-G MAF2"},
   "author": "Antoine Guiral",
   "disqus": "kaolinvalley",
