@@ -1,9 +1,0 @@
-{
-  "host": "kaolinvalley.com",
-  "port": 8080,
-  "admin": {"username": "antoine", "password": "A-G MAF2"},
-  "author": "Antoine Guiral",
-  "disqus": "kaolinvalley",
-  "paths": {
-    "articles": "markdown"}
-}
