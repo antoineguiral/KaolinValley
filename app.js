@@ -10,13 +10,14 @@ var config = JSON.parse(require('fs').readFileSync(__dirname + '/config.json','u
  **/
 mdb.setDefault('category', 'General');
 //mdb.setDefault('url', 'http://' + config.host + (config.port == '80' ? '' : ':' + config.port));
-mdb.setDefault('url', 'http://'+config.host);
+mdb.setDefault('url', 'http://' + config.absolute_path);
+
 /**
  * Set basic variables passed to jade template
  **/
  
 mdb.setMeta('site', config.host); 
-mdb.setMeta('url', 'http://' + config.host);
+mdb.setMeta('url', 'http://' + config.absolute_path);
 mdb.setMeta('author', config.author);
 mdb.setMeta('disqus', config.disqus);
 
@@ -33,7 +34,6 @@ mdb.index(__dirname + '/' + config.paths.articles);
  * Start express.js http servr with kickstart (more: http://semu.mp/node-kickstart.html)
  **/
 var kickstart = require('node-kickstart').withConfig({'name': config.host, 'port': config.port, 'path': __dirname});
-
 var srv = kickstart.srv();
 
 /**
@@ -209,5 +209,4 @@ function trim(str) { return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '').repl
  *
  **/
 var router = kickstart.listen();
-console.log(kickstart)
 console.log("Listening on http://%s:%d", kickstart.conf().name, router.address().port);
