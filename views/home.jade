@@ -1,20 +1,30 @@
+.jumbotron
+      .inner
+        h1 Startup + Limoges 
+
 #article-list.container.home
   
-  section
-    p Startup + Limoges = Kaolin Valley
-  section#article
-    .page-header
-      h1 Recent Articles 
-        small #{list.length} available, showing recent 5  
-  - for (var i = 0; i < list.slice(0, 5).length; i++) 
-    .row
-      .span2.datefield
-        code=list[i].datestring
-      .span14.cLeft
-        h3
-          a(href=list[i].url) #{list[i].name} 
-          small
-            abbr.timeago(title=list[i].date.toISOString()) list[i].date.toISOString()
-    .row
-      .offset2.span14.cLeft
-        #content!=list[i].excerpt          
+ 
+  section#article.row
+    
+    .span12
+        .accordion#accordion
+            
+          - for (var i = 0,ii=list.slice(0, 5).length; i < ii; i++) 
+            .accordion-group
+                  .accordion-heading
+                    h3
+                      a.accordion-toggle(data-toggle="collapse",data-parent="#accordion",href="#collapse"+i) 
+                        small=list[i].datestring
+                        #{list[i].name}
+                  - if (i==ii-1)
+                    div(id="collapse"+i).collapse.in
+                  - else
+                    div(id="collapse"+i).collapse.in
+                  
+                        .accordion-inner
+                            .span2.datefield
+                                code=list[i].datestring
+                            .span6
+                                #content!=list[i].excerpt
+           

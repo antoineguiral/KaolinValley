@@ -107,7 +107,8 @@ srv.all('/posts', function(req, res) {
   mdb.setMeta('headline', 'Recent Articles');
   mdb.setMeta('current', 'posts');  
 
-  res.render('posts', mdb.jadeData({list: mdb.getArticles(), tags: mdb.getTagCloud(30, 14)}, req));
+//console.log(mdb.getCategories())
+  res.render('posts', mdb.jadeData({list: mdb.getArticles(), tags: mdb.getTagCloud(30, 14),categories:mdb.getCategories()}, req));
 });
 
 /**
@@ -131,7 +132,7 @@ srv.all(/([A-Za-z0-9\-]+\-([0-9]+)\.html)/, function(req, res) {
 	mdb.setMeta('headline', item.name);	
 	mdb.setMeta('current', 'posts');
 	
-  res.render('article', mdb.jadeData({article: item, auth: req.session.valid}, req));
+  res.render('article', mdb.jadeData({article: item, auth: req.session.valid,categories:mdb.getCategories()}, req));
 });
 
 /**
@@ -145,7 +146,7 @@ srv.all(/\/tag\/([A-Za-z0-9\-]+\.html)/, function(req, res) {
   mdb.setMeta('headline', 'Tagged with ' + req.params[0].replace('.html',''));  
   mdb.setMeta('current', 'posts');
 	
-  res.render('posts', mdb.jadeData({tags: mdb.getTagCloud(30, 14), list: articles}, req));
+  res.render('posts', mdb.jadeData({tags: mdb.getTagCloud(30, 14), list: articles,categories:mdb.getCategories()}, req));
 });
 
 /**
@@ -167,8 +168,7 @@ srv.all('/', function(req, res) {
 	mdb.setMeta('url', mdb.getDefault('url'));
 	mdb.setMeta('title', 'Home, node-blog');
   mdb.setMeta('current', 'home');
-
-  return res.render('home', mdb.jadeData({list: mdb.getArticles()}, req));
+  return res.render('home', mdb.jadeData({list: mdb.getArticles(),categories:mdb.getCategories()}, req));
 });
 
 /**

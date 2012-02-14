@@ -22,6 +22,7 @@ html(lang="de",xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#"
     script(type="text/javascript", src="/scripts/showdown.js")
     script(type="text/javascript", src="/scripts/bootstrap-modal.js")
     script(type="text/javascript", src="/scripts/bootstrap-dropdown.js")
+    script(type="text/javascript", src="/scripts/bootstrap-collapse.js")
     script(type="text/javascript", src="/ace/src/ace.js")
     script(type="text/javascript", src="/ace/src/theme-clouds.js")
     script(type="text/javascript", src="/ace/src/mode-markdown.js")    
@@ -32,20 +33,26 @@ html(lang="de",xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#"
       script
         var auth = false, redirectTo = null, maxID = null;
   body(onload="prettyPrint()")
-    .container
-      section#navigation
-        .topbar-wrapper(style="z-index: 5;")
-          .topbar(data-dropdown="dropdown")
-            .topbar-inner
+      
+          .navbar(data-dropdown="dropdown")
+            .navbar-inner
               .container
-                h3
-                  a(href="/") KaolinValley
+                .brand KaolinValley
                 ul.nav
                   li(class=(meta.current == 'home' ? 'active' : ''))
                     a(href="/") Accueil
                   li(class=(meta.current == 'posts' ? 'active' : ''))
-                    a(href="/posts") Posts
-                ul.nav.secondary-nav
+                    a(href="/posts") Articles
+                  li.dropdown
+                    a(href="#",class="dropdown-toggle",data-toggle="dropdown") Categories
+                      b.caret  
+                    ul.dropdown-menu
+                      li
+                      each catName in categories
+                            a(href="/"+catName) #{catName} (#{categories[catName]})
+                        
+                            
+                ul.nav
                   - if (session.valid) 
                     li#adminmenu.dropdown
                       a.dropdown-toggle(href="#3") Administration
