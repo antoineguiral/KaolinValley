@@ -1,6 +1,6 @@
 .jumbotron
       .inner
-        h1 Startup + Limoges 
+        h1 Limoges + Startup = KaolinValley
 
 #article-list.container.home
   
@@ -17,10 +17,8 @@
                       a.accordion-toggle(data-toggle="collapse",data-parent="#accordion",href="#collapse"+i) 
                         small=list[i].datestring
                         #{list[i].name}
-                  - if (i==ii-1)
-                    div(id="collapse"+i).collapse.in
-                  - else
-                    div(id="collapse"+i).collapse.in
+                 
+                    div(id="collapse"+i).collapse
                   
                         .accordion-inner
                             .span2.datefield

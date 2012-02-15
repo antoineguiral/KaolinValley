@@ -48,26 +48,15 @@ html(lang="de",xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#"
                       b.caret  
                     ul.dropdown-menu
                       li
-                      each catName in categories
-                            a(href="/"+catName) #{catName} (#{categories[catName]})
+                      each catnum,catName in categories
+                            a(href="/"+catName) #{catName} (#{catnum})
                         
                             
-                ul.nav
-                  - if (session.valid) 
-                    li#adminmenu.dropdown
-                      a.dropdown-toggle(href="#3") Administration
-                      ul.dropdown-menu
-                        li
-                          a#buttoncompose(href="#") Compose Article…
-                        li
-                          a#buttondrafts(href="#") Show Drafts…
-                  - else
-                    li
-                      a#login(href="#") Login
+                
     #content!= body
     #logindata.modal.hide.fade
       .modal-header
-        a.close(href="#") &times;
+        a.close(href="#",data-dismiss="modal") &times;
         h3 Authentication Required!
       .modal-body
         form
@@ -86,7 +75,7 @@ html(lang="de",xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#"
           img(src="/loader.gif")
     #composemodal.modal.hide.fade
       .modal-header
-        a.close(href="#") &times;
+        a.close(href="#",data-dismiss="modal") &times;
         h3 Compose Article
       .modal-body
         form
@@ -108,7 +97,7 @@ html(lang="de",xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#"
           img(src="/loader.gif")   
     #draftsmodal.modal.hide.fade
       .modal-header
-        a.close(href="#") &times;
+        a.close(href="#",data-dismiss="modal") &times;
         h3 Unpublished Drafts
       .modal-body.loading-body
         p
@@ -118,5 +107,14 @@ html(lang="de",xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#"
     footer.footer
       .container
         p All Posts, Ideas and Information written by  
-          a(href="/about") Kaolin Valley
+          a(href="/about") Kaolin Valley 
+          
+          - if (session.valid) 
+              |
+              a#buttoncompose(href="#") Compose Article 
+              |
+              a#buttondrafts(href="#") Show Drafts
+          - else
+              |
+              a#login(href="#") Login
           
