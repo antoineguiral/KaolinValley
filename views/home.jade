@@ -22,7 +22,11 @@
                   
                         .accordion-inner
                             .span2.datefield
-                                code=list[i].datestring
+                                - for (var j = 0,jj=list[i].tags.length; j < jj; j++)
+                                    a(href="/tag/" + list[i].tags[j].url + ".html",title=list[i].tags[j].name).label.label-info #{list[i].tags[j].name}
                             .span6
-                                #content!=list[i].excerpt
+                                #content
+                                    !=list[i].excerpt
+                                    
+                                    a(href=list[i].url,title=list[i].name).label.label-info continuer la lecture
            
