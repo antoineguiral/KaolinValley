@@ -157,7 +157,7 @@ srv.all('/about', function(req, res) {
   mdb.setMeta('url', mdb.getDefault('url') + req.url);
 	mdb.setMeta('title', 'About');
 	
-  res.render('about', mdb.jadeData({}, req));
+  res.render('about', mdb.jadeData({,categories:mdb.getCategories()}, req));
 });
 
 /**
