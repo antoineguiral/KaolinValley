@@ -13,20 +13,21 @@
           - for (var i = 0,ii=list.slice(0, 5).length; i < ii; i++) 
             .accordion-group
                   .accordion-heading
-                    h3
-                      a.accordion-toggle(data-toggle="collapse",data-parent="#accordion",href="#collapse"+i) 
+                    a.accordion-toggle(data-toggle="collapse",data-parent="#accordion",href="#collapse"+i) 
+                      h3
+                     
                         small=list[i].datestring
                         #{list[i].name}
                  
                     div(id="collapse"+i).collapse
                   
                         .accordion-inner
-                            .span2.datefield
+                            .span1.datefield
                                 - for (var j = 0,jj=list[i].tags.length; j < jj; j++)
                                     a(href="/tag/" + list[i].tags[j].url + ".html",title=list[i].tags[j].name).label.label-info #{list[i].tags[j].name}
-                            .span6
-                                #content
-                                    !=list[i].excerpt
+                            .span8
+                                .excerpt
+                                    !=list[i].excerpt 
                                     
-                                    a(href=list[i].url,title=list[i].name).label.label-info continuer la lecture
+                                    a(href=list[i].url,title=list[i].name)  Continuer la lecture >
            

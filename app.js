@@ -123,7 +123,7 @@ srv.post('/api/auth', function(req, res) {
 srv.all('/posts', function(req, res) {
     mdb.setMeta('url', mdb.getDefault('url') + req.url);
     mdb.setMeta('title', 'Articles');
-    mdb.setMeta('headline', 'Recent Articles');
+    mdb.setMeta('headline', 'Articles récents');
     mdb.setMeta('current', 'posts');  
 
     //console.log(mdb.getCategories())
@@ -173,7 +173,25 @@ srv.all(/\/tag\/([A-Za-z0-9\-]+\.html)/, function(req, res) {
     var articles = mdb.getArticlesByTag(req.params[0].replace('.html','').toLowerCase().replace(/[^a-z0-9-]/g, '-')) || [];
     mdb.setMeta('url', mdb.getDefault('url') + req.url);
     mdb.setMeta('title', 'Tag: ' + req.params[0].replace('.html',''));
-    mdb.setMeta('headline', 'Tagged with ' + req.params[0].replace('.html',''));  
+    mdb.setMeta('headline', 'Tagué avec ' + req.params[0].replace('.html',''));  
+    mdb.setMeta('current', 'posts');
+	
+    res.render('posts', mdb.jadeData({
+        tags: mdb.getTagCloud(30, 14), 
+        list: articles,
+        categories:mdb.getCategories()
+    }, req));
+});
+
+/**
+ * Display articles by category
+ * @example http://semu.mp/tag/node.html
+ **/
+srv.all(/\/categorie\/([A-Za-z0-9\-]+\.html)/, function(req, res) {
+    var articles = mdb.getArticlesByCategory(req.params[0].replace('.html','')) || [];
+    mdb.setMeta('url', mdb.getDefault('url') + req.url);
+    mdb.setMeta('title', 'Categorie: ' + req.params[0].replace('.html',''));
+    mdb.setMeta('headline', 'Dans la catégorie ' + req.params[0].replace('.html',''));  
     mdb.setMeta('current', 'posts');
 	
     res.render('posts', mdb.jadeData({
@@ -189,7 +207,7 @@ srv.all(/\/tag\/([A-Za-z0-9\-]+\.html)/, function(req, res) {
  */
 srv.all('/about', function(req, res) {
     mdb.setMeta('url', mdb.getDefault('url') + req.url);
-    mdb.setMeta('title', 'About');
+    mdb.setMeta('title', 'A propos');
 	
     res.render('about', mdb.jadeData({
         categories:mdb.getCategories()
@@ -202,7 +220,7 @@ srv.all('/about', function(req, res) {
  **/
 srv.all('/', function(req, res) {
     mdb.setMeta('url', mdb.getDefault('url'));
-    mdb.setMeta('title', 'Home, node-blog');
+    mdb.setMeta('title', 'Kaolin Valley : toute l\'actu startup de Limoges');
     mdb.setMeta('current', 'home');
     return res.render('home', mdb.jadeData({
         list: mdb.getArticles(),
