@@ -11,6 +11,7 @@ html(lang="de",xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#"
         
     link(rel="alternate",type="application/rss+xml",title="RSS Feed",href="/feed/")    
     link(rel="stylesheet", href="/twitter/bootstrap.css")
+    link(rel="stylesheet", href="/twitter/responsive.css")
     link(rel="stylesheet", href="/styles/docs.css")
     link(rel="stylesheet", href="/styles/custom.css")
     link(rel="stylesheet", href="/google-code-prettify/prettify.css")
@@ -37,19 +38,24 @@ html(lang="de",xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#"
           .navbar(data-dropdown="dropdown")
             .navbar-inner
               .container
+                a(data-toggle="collapse",data-target=".nav-collapse").btn.btn-navbar
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
                 .brand KaolinValley
-                ul.nav
-                  li(class=(meta.current == 'home' ? 'active' : ''))
-                    a(href="/") Accueil
-                  li(class=(meta.current == 'posts' ? 'active' : ''))
-                    a(href="/posts") Articles
-                  li.dropdown
-                    a(href="#",class="dropdown-toggle",data-toggle="dropdown") Categories
-                      b.caret  
-                    ul.dropdown-menu
-                      li
-                      each catnum,catName in categories
-                            a(href="/categorie/"+catName+".html") #{catName} (#{catnum})
+                .nav-collapse
+                    ul.nav
+                      li(class=(meta.current == 'home' ? 'active' : ''))
+                        a(href="/") Accueil
+                      li(class=(meta.current == 'posts' ? 'active' : ''))
+                        a(href="/posts") Articles
+                      li.dropdown
+                        a(href="#",class="dropdown-toggle",data-toggle="dropdown") Categories
+                          b.caret  
+                        ul.dropdown-menu
+                          li
+                          each catnum,catName in categories
+                                a(href="/categorie/"+catName+".html") #{catName} (#{catnum})
                         
                             
                 
